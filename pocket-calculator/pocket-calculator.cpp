@@ -2,10 +2,10 @@
  * JML190001 - John Lawler
  * CS4375.004 Project One
  * 01/30/23
- * 
- * Program takes in information from Boston.csv and does 
+ *
+ * Program takes in information from Boston.csv and does
  * calculations to find: sum, mean, median, range, covariance,
- * and correlation. 
+ * and correlation.
  */
 #include <iostream>
 #include <fstream>
@@ -40,6 +40,8 @@ int main(int argc, char** argv) {
 	inFS.open("Boston.csv");
 	if (!inFS.is_open()) {
 		cout << "Could not open file Boston.csv." << endl;
+		cout << "Press enter to end program...";
+		cin.get();
 		return 1;
 	}
 
@@ -81,7 +83,7 @@ int main(int argc, char** argv) {
 	// get stats for medv and print
 	cout << "\nStats for medv" << endl;
 	double* medvStats = printStats(medv);
-	
+
 	// get covariance and print
 	double covariance = getCovariance(rm, medv, rmStats[1], medvStats[1], numObservations);
 	cout << "\nCovariance: " << covariance << endl;
@@ -94,18 +96,22 @@ int main(int argc, char** argv) {
 	double correlation = getCorrelation(rmStdDev, medvStdDev, covariance);
 	cout << "\nCorrelation: " << correlation << endl;
 
+	// program stop for executable
+	cout << "Press enter to end program...";
+	cin.get();
+
 	// end program
 	cout << "\nProgram terminated.";
 	return 0;
 }
 
 /* double* printStats(vector<double> stats)
- * args: 
+ * args:
  * vector to perform operations on
- * 
+ *
  * return: double statsArr[4]
  * double vector returns stats in order: sum, mean, median, range
- * 
+ *
  * function does operations on a vector and provides data
  */
 double* printStats(vector<double> stats) {
@@ -127,16 +133,16 @@ double* printStats(vector<double> stats) {
 }
 
 /* double getSum(vector<double> stats)
- * args: 
+ * args:
  * vector to perform operations on
- * 
+ *
  * return: double sum
  * sum of all elements in vector
- * 
+ *
  * function returns the sum of all elements in a vector
  */
 double getSum(vector<double> stats) {
-	
+
 	// get the sum of all elements in a vector
 	double sum = 0.0;
 	for (int i = 0; i < stats.size(); i++)
@@ -147,13 +153,13 @@ double getSum(vector<double> stats) {
 }
 
 /* double getMean(vector<double> stats, double sum)
- * args: 
+ * args:
  * vector to perform operations on
  * sum of all elements in a vector from getSum function
- * 
+ *
  * return: double mean
  * mean of elements in vector
- * 
+ *
  * function returns the mean of the elements in a vector
  */
 double getMean(vector<double> stats, double sum) {
@@ -161,12 +167,12 @@ double getMean(vector<double> stats, double sum) {
 }
 
 /* double getMedian(vector<double> stats)
- * args: 
+ * args:
  * vector to perform operations on
- * 
+ *
  * return: double median
  * median of elements a vector
- * 
+ *
  * function returns the median of a vector
  */
 double getMedian(vector<double> stats) {
@@ -190,11 +196,11 @@ double getMedian(vector<double> stats) {
 /* double getRange(vector<double> stats)
  * args:
  * vector to perform operations on
- * 
+ *
  * return: double range
  * double of the largest element - the smallest element
- * 
- * function sorts the vector and calculates the range 
+ *
+ * function sorts the vector and calculates the range
  * by subtracting the smallest element from the largest element
  */
 double getRange(vector<double> stats) {
@@ -202,12 +208,12 @@ double getRange(vector<double> stats) {
 	// sort vector
 	vector<double> sortedVector(stats);
 	sort(sortedVector.begin(), sortedVector.end());
-	
+
 	// return range
 	return sortedVector[sortedVector.size() - 1] - sortedVector[0];
 }
 
-/* double getCovariance(vector<double> rm, vector<double> medv, 
+/* double getCovariance(vector<double> rm, vector<double> medv,
  *		double meanRm, double meanMedv, int size)
  * args:
  * rm vector to calculate covariance
@@ -215,32 +221,32 @@ double getRange(vector<double> stats) {
  * mean of rm vector
  * mean of medv vector
  * int of vector size
- * 
+ *
  * return: covariance calculation
- * 
- * function calculates covariance, formula is included in 
+ *
+ * function calculates covariance, formula is included in
  * /metropolis/portfolio-one-data-exploration/formulas.png
  */
 double getCovariance(vector<double> rm, vector<double> medv,
 	double meanRm, double meanMedv, int size) {
-	
+
 	// formula location included in function header
 	double covariance = 0.0;
-	for (int i = 0; i < size; i++) 
+	for (int i = 0; i < size; i++)
 		covariance += ((rm[i] - meanRm) * (medv[i] - meanMedv));
-	
+
 	return (covariance / (size - 1));
 }
 
 /* double getCorrelation(double rmStdDev, double medvStdDev, double covariance)
- * args: 
+ * args:
  * double of the standard deviation of vector rm
  * double of the standard deviation of vector medv
  * double of calculated covariance
- * 
+ *
  * return: correlation calculation
- * 
- * function calculates correlation, formula is included in 
+ *
+ * function calculates correlation, formula is included in
  * /metropolis/portfolio-one-data-exploration/formulas.png
  */
 double getCorrelation(double rmStdDev, double medvStdDev, double covariance) {
@@ -251,21 +257,21 @@ double getCorrelation(double rmStdDev, double medvStdDev, double covariance) {
 }
 
 /* double getStandardDeviation(vector<double> stats, double mean, int, size)
- * args: 
+ * args:
  * vector to calculate standard deviation of
  * double of the mean
  * int of the size of the vector
  *
  * return: the standard deviation of the vector
  */
-double getStandardDeviation(vector<double> stats, 
+double getStandardDeviation(vector<double> stats,
 	double mean, int size) {
 
 	// double for calculation
 	double sum = 0.0;
 
 	// get the sum of each element in the vector subtracted by the mean
-	for (int i = 0; i < size; i++) 
+	for (int i = 0; i < size; i++)
 		sum += pow(stats[i] - mean, 2);
 
 	// square root the calcuation and return
