@@ -1,1 +1,12 @@
 todo
+- [portfolio-setup](/metropolis/assignment-portfolio-setup)
+  - [create-github-portfolio](/metropolis/assignment-portfolio-setup/create-github-portfolio.pdf)
+  - [portfolio-setup](/metropolis/assignment-portfolio-setup/portfolio-setup.pdf)
+- [portfolio-one-data-exploration](/metropolis/portfolio-one-data-exploration)
+  - [data-exploration](/metropolis/portfolio-one-data-exploration/portfolio-one-data-exploration.pdf)
+  - [formulas](/metropolis/portfolio-one-data-exploration/formulas.png)
+  - [execution-1](/metropolis/portfolio-one-data-exploration/pocket-calculator-1.PNG)
+  - [execution-2](/metropolis/portfolio-one-data-exploration/pocket-calculator-2.PNG)
+  - [execution-3](/metropolis/portfolio-one-data-exploration/pocket-calculator-3.PNG)
+  - [Boston.csv](/pocket-calculator/Boston.csv)
+- [markdown-cheat-sheet](/metropolis/markdown-cheat-sheet.pdf)
