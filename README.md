@@ -3,6 +3,8 @@ Code and projects from CS4375.004 Machine Learning course with Karen Mazidi. The
 
 Included in this repo is [Overview-of-ML](Overview-of-ML.pdf) which contains the answers to questions to the [Assignment: Portfolio Setup](/metropolis/assignment-portfolio-setup/portfolio-setup.pdf), including the instructions to create a [GitHub portfolio](/metropolis/Assignment-Portfolio-Setup/create-github-portfolio.pdf).  
 
+**Please note that each header in this file links to it's corresponding folder. I tried to include all of the links from metropolis as they came up, but a full table of contents can be found [here](metropolis.md).**
+
 Name is in reference to the [Gesamtkunstwerk](https://www.theartstory.org/definition/gesamtkunstwerk/) of [Kraftwerk](https://en.wikipedia.org/wiki/Kraftwerk), an early-electronica German band, and their electronic music discography. [The Man-Machine or Die Mensch-Maschine](https://youtu.be/EPxGE1xWl_E?list=PLRp2a3r7tvpd3NpB_CwUbOoLxRgY4CwHh) is a [1978 electronic album](https://en.wikipedia.org/wiki/The_Man-Machine) that felt like an appropriate name and naming scheme for my projects in this machine learning course. 
 
 ## [metropolis](/metropolis)
