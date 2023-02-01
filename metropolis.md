@@ -1,4 +1,3 @@
-todo
 - [portfolio-setup](/metropolis/assignment-portfolio-setup)
   - [create-github-portfolio](/metropolis/assignment-portfolio-setup/create-github-portfolio.pdf)
   - [portfolio-setup](/metropolis/assignment-portfolio-setup/portfolio-setup.pdf)
