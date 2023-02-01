@@ -6,25 +6,16 @@ Included in this repo is [Overview-of-ML](Overview-of-ML.pdf) which contains the
 Name is in reference to the [Gesamtkunstwerk](https://www.theartstory.org/definition/gesamtkunstwerk/) of [Kraftwerk](https://en.wikipedia.org/wiki/Kraftwerk), an early-electronica German band, and their electronic music discography. [The Man-Machine or Die Mensch-Maschine](https://youtu.be/EPxGE1xWl_E?list=PLRp2a3r7tvpd3NpB_CwUbOoLxRgY4CwHh) is a [1978 electronic album](https://en.wikipedia.org/wiki/The_Man-Machine) that felt like an appropriate name and naming scheme for my projects in this machine learning course. 
 
 ## [metropolis](/metropolis)
-- [portfolio-setup](/metropolis/assignment-portfolio-setup)
-  - [create-github-portfolio](/metropolis/assignment-portfolio-setup/create-github-portfolio.pdf)
-  - [portfolio-setup](/metropolis/assignment-portfolio-setup/portfolio-setup.pdf)
-- [portfolio-one-data-exploration](/metropolis/portfolio-one-data-exploration)
-  - [data-exploration](/metropolis/portfolio-one-data-exploration/portfolio-one-data-exploration.pdf)
-  - [formulas](/metropolis/portfolio-one-data-exploration/formulas.png)
-  - [execution-1](/metropolis/portfolio-one-data-exploration/pocket-calculator-1.PNG)
-  - [execution-2](/metropolis/portfolio-one-data-exploration/pocket-calculator-2.PNG)
-  - [execution-3](/metropolis/portfolio-one-data-exploration/pocket-calculator-3.PNG)
-  - [Boston.csv](/pocket-calculator/Boston.csv)
-- [markdown-cheat-sheet](/metropolis/markdown-cheat-sheet.pdf)
+Please click [here](metropolis.md) for the table of contents contained within it. Contains mainly loose files that pertain to various projects such as their assignment pages or pictures of their execution. 
 
 Name is a reference to [Metropolis](https://youtu.be/SXTBGB2cKAk) in which is a reference to a the [Fritz Lang film](https://en.wikipedia.org/wiki/Metropolis_(1927_film)).
 
 ## [pocket-calculator](/pocket-calculator)
-[pocket-calculator.cpp](/pocket-calculator/pocket-calculator.cpp) is the code from [project one](/metropolis/portfolio-one-data-exploration). 
+[pocket-calculator.cpp](/pocket-calculator/pocket-calculator.cpp) is the code from [project one](/metropolis/portfolio-one-data-exploration). This blurb contains everything that may be needed from a README for pocket-calculator. 
 - the formulas used can be found [here](/metropolis/portfolio-one-data-exploration/formulas.png), 
 - the data set can be found [here](/pocket-calculator/Boston.csv) (Boston.csv), 
 - the execution images can be found [here](/metropolis/portfolio-one-data-exploration/pocket-calculator-1.PNG), [here](/metropolis/portfolio-one-data-exploration/pocket-calculator-2.PNG), and [here](/metropolis/portfolio-one-data-exploration/pocket-calculator-3.PNG),
+- an [executable](/pocket-calculator/pocket-calculator.exe) that can be run, given that [Boston.csv](/pocket-calculator/Boston.csv) is in the same folder, 
 - and the document with responses can be found here TODO 
 
 All of these misc. files can be found in the folder [here](/metropolis/portfolio-one-data-exploration). 
