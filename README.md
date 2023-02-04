@@ -14,15 +14,16 @@ Name is a reference to [Metropolis](https://youtu.be/SXTBGB2cKAk) in which is a 
 
 ## [pocket-calculator](/pocket-calculator)
 [pocket-calculator.cpp](/pocket-calculator/pocket-calculator.cpp) is the code from [project one](/metropolis/portfolio-one-data-exploration). This blurb contains everything that may be needed from a README for pocket-calculator. 
+
+Program takes in data from Boston.csv and uses that data to find the sums, means, medians, and ranges of columns rm and medv. Program also determines correlation and covariance. 
+
 - the formulas used can be found [here](/metropolis/portfolio-one-data-exploration/formulas.png), 
-- the data set can be found [here](/pocket-calculator/Boston.csv) (Boston.csv), 
 - the execution images can be found [here](/metropolis/portfolio-one-data-exploration/pocket-calculator-1.PNG), [here](/metropolis/portfolio-one-data-exploration/pocket-calculator-2.PNG), and [here](/metropolis/portfolio-one-data-exploration/pocket-calculator-3.PNG),
 - a [pdf](/pocket-calculator/pocket-calculator-rstudio.pdf) of a quick Rstduio file to confirm numbers,
-- an [executable](/pocket-calculator/pocket-calculator.exe) that can be run, given that [Boston.csv](/pocket-calculator/Boston.csv) is in the same folder, 
-- and the document with responses can be found here TODO 
+- the document with responses can be found [here](/pocket-calculator/CS4375-data-exploration-response.pdf),
+- and an [executable](/pocket-calculator/pocket-calculator.exe) that can be run, given that [Boston.csv](/pocket-calculator/Boston.csv) is in the same folder
 
-All of these misc. files can be found in the folder [here](/metropolis/portfolio-one-data-exploration). 
-Program takes in data from Boston.csv and uses that data to find the sums, means, medians, and ranges of columns rm and medv. Program also determines correlation and covariance. 
+All of the main files can be found [here](/pocket-calculator), and all of the misc. files can be found in this [folder](/metropolis/portfolio-one-data-exploration). 
 
 Name is a reference to [Pocket Calculator](https://youtu.be/eSBybJGZoCU) which just seemed fitting because this was a program that was calculating some data. 
 
