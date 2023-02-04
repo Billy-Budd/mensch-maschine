@@ -20,6 +20,7 @@ const int MAX_LEN = 1000;
 
 // function prototypes
 double* printStats(vector<double>);
+void printMinMax(vector<double>);
 double getSum(vector<double>);
 double getMean(vector<double>, double);
 double getMedian(vector<double>);
@@ -127,9 +128,30 @@ double* printStats(vector<double> stats) {
 	cout << "\tSum: " << statsArr[0] << endl
 		<< "\tMean: " << statsArr[1] << endl
 		<< "\tMedian: " << statsArr[2] << endl
-		<< "\tRange: " << statsArr[3] << endl;
+		<< "\tRange: " << statsArr[3] << " | ";
+	printMinMax(stats);
 
 	return statsArr;
+}
+
+/* double printMinMax(vector<double> stats)
+ * args:
+ * vector to perform operations on
+ *
+ * return: nothing
+ *
+ * function prints min and max for range
+ */
+void printMinMax(vector<double> stats) {
+
+	// sort vector
+	vector<double> sortedVector(stats);
+	sort(sortedVector.begin(), sortedVector.end());
+	
+	// print min and max
+	cout << sortedVector[0] << " "
+		<< sortedVector[sortedVector.size() - 1]
+		<< endl;
 }
 
 /* double getSum(vector<double> stats)
