@@ -17,6 +17,7 @@ Name is a reference to [Metropolis](https://youtu.be/SXTBGB2cKAk) in which is a 
 - the formulas used can be found [here](/metropolis/portfolio-one-data-exploration/formulas.png), 
 - the data set can be found [here](/pocket-calculator/Boston.csv) (Boston.csv), 
 - the execution images can be found [here](/metropolis/portfolio-one-data-exploration/pocket-calculator-1.PNG), [here](/metropolis/portfolio-one-data-exploration/pocket-calculator-2.PNG), and [here](/metropolis/portfolio-one-data-exploration/pocket-calculator-3.PNG),
+- a [pdf](/pocket-calculator/pocket-calculator-rstudio.pdf) of a quick Rstduio file to confirm numbers,
 - an [executable](/pocket-calculator/pocket-calculator.exe) that can be run, given that [Boston.csv](/pocket-calculator/Boston.csv) is in the same folder, 
 - and the document with responses can be found here TODO 
 
