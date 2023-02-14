@@ -13,30 +13,38 @@ output:
 ===============================================================================================================
 
 ##### **Getting the File**
-To run any of the chunks of R script in this file, please insert *[imdb-data.csv](https://www.kaggle.com/datasets/mahmoudahmed6/imdb-2022-movies)* into the same folder as this file. I renamed the file, but the correct named one is in my [Github]() repository. Additionally, I removed the word "min" from the column Runtime as it was redundant and helpful to remove it before running any of the code here. You can click [here]() for the altered file.
+To run any of the chunks of R script in this file, please insert *[imdb-data.csv](https://www.kaggle.com/datasets/mahmoudahmed6/imdb-2022-movies)* into the same folder as this file. I renamed the file, but the correct named one is in my [Github](https://github.com/Billy-Budd/mensch-maschine/blob/main/blue-monday/imdb-data.csv) repository. Additionally, I removed the word "min" from the column Runtime as it was redundant and helpful to remove it before running any of the code here. You can click [here](https://github.com/Billy-Budd/mensch-maschine/blob/main/blue-monday/imdb-data.csv) for the altered file. Any other information that pertains to other documents can be found in the [read me](https://github.com/Billy-Budd/mensch-maschine#readme).
 
 ```{r}
 df <- read.csv("imdb-data.csv")
 ```
 
 ##### **Parsing the Columns**
-The columns in this .csv are of type char by default, so to fix this, we set the Rating column to doubles and the Runtime column to integers. This creates some NA cells, so we remove them with na.omit() to ensure that lm() and any subsequent function will run. I suppress the warnings here because I omit the NA cells immediately after. 
+The columns in this .csv are of type char by default, so to fix this, we set the Rating column to doubles and the Runtime column to integers. This creates some NA cells, so we remove them with na.omit() to ensure that lm() and any subsequent function will run. I suppress the warnings here because I omit the NA cells immediately after. Print amount of remaining rows.
 
 ```{r}
-suppressWarnings(df$Rating <- as.double(df$Rating))
-suppressWarnings(df$Runtime <-as.integer(df$Runtime))
+suppressWarnings(df$Rating <- as.double(df$Rating)) # parse as doubles
+suppressWarnings(df$Runtime <-as.integer(df$Runtime)) # parse as integers
 
-df <- na.omit(df)
+df <- na.omit(df) # remove missing data
+
+# output number of rows
+print(paste("Number of doubles in Rating:", length(df$Rating)))
+print(paste("Number of integers in Runtime:", length(df$Runtime))) 
 ```
 
 ##### **Creating an 80/20 Split**
-We set the seed so that our split does not change between runs of the sample() function. We then separate it into a list called train (the 80 split) and test (the 20 split).
+We set the seed so that our split does not change between runs of the sample() function. We then separate it into a list called train (the 80 split) and test (the 20 split). Output lengths of each split. 
 
 ```{r}
 set.seed(1234)
 split <- sample(1:nrow(df), nrow(df)*.8, replace=FALSE) # split the data into 80/20 samples
 train <- df[ split, ] # set train as the  80 split
 test <- df[ -split, ] # set test as the 20 split
+
+# I used ratings here to show observations, but any column header would be acceptable
+print(paste("Number of observations in train:", length(train$Rating)))  
+print(paste("Number of observations in test:", length(test$Rating)))
 ```
 
 
