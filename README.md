@@ -7,6 +7,11 @@ Included in this repo is [Overview-of-ML](Overview-of-ML.pdf) which contains the
 
 Name is in reference to the [Gesamtkunstwerk](https://www.theartstory.org/definition/gesamtkunstwerk/) of [Kraftwerk](https://en.wikipedia.org/wiki/Kraftwerk), an early-electronica German band, and their electronic music discography. [The Man-Machine or Die Mensch-Maschine](https://youtu.be/EPxGE1xWl_E?list=PLRp2a3r7tvpd3NpB_CwUbOoLxRgY4CwHh) is a [1978 electronic album](https://en.wikipedia.org/wiki/The_Man-Machine) that felt like an appropriate name and naming scheme for my projects in this machine learning course. 
 
+## [blue-monday](/blue-monday)
+TODO [data link](https://www.kaggle.com/datasets/thedevastator/global-video-game-sales-ratings)
+
+Name is in reference to the song [Blue Monday](https://youtu.be/c1GxjzHm5us) by [New Order](https://en.wikipedia.org/wiki/New_Order_(band)) which [samples](https://en.wikipedia.org/wiki/Blue_Monday_(New_Order_song)) the song [Uranium](https://youtu.be/t-QIWXiGuGw). While this is a bit of a stretch in the naming scheme, taking samples is important in data collection and statistics. I also really wanted to name something after Blue Monday. 
+
 ## [metropolis](/metropolis)
 Please click [here](metropolis.md) for the table of contents contained within it. Contains mainly loose files that pertain to various projects such as their assignment pages or pictures of their execution. 
 
