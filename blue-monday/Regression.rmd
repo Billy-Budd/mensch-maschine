@@ -1,0 +1,33 @@
+---
+title: "Regression"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+#### Created by John Lawler - JML190001
+###### CS4375.004 with Karen Mazidi
+###### Created on 2/13/2023, last worked on 2/13/2023
+
+To run any of the chunks of R script in this file, please insert *video-games.csv* into the same folder as this file. 
+
+
+```{r}
+df <- read.csv("video-games.csv")
+```
+
+```{r}
+set.seed(1234)
+split <- sample(1:nrow(df), nrow(df)*.8, replace=FALSE)
+train <- df[ split, ]
+test <- df[ -split, ]
+```
+
+```{r}
+lm1 <- lm(Global_Sales~Critic_Score, data=train)
+summary(lm1)
+par(mfrow=c(2,2))
+plot(lm1)
+
+```
