@@ -10,22 +10,39 @@ output:
 ###### CS4375.004 with Karen Mazidi
 ###### Created on 2/13/2023, last worked on 2/13/2023
 
-To run any of the chunks of R script in this file, please insert *video-games.csv* into the same folder as this file. 
+===============================================================================================================
 
+##### **Getting the File**
+To run any of the chunks of R script in this file, please insert *[imdb-data.csv](https://www.kaggle.com/datasets/mahmoudahmed6/imdb-2022-movies)* into the same folder as this file. I renamed the file, but the correct named one is in my [Github]() repository. Additionally, I removed the word "min" from the column Runtime as it was redundant and helpful to remove it before running any of the code here. You can click [here]() for the altered file.
 
 ```{r}
-df <- read.csv("video-games.csv")
+df <- read.csv("imdb-data.csv")
 ```
+
+##### **Parsing the Columns**
+The columns in this .csv are of type char by default, so to fix this, we set the Rating column to doubles and the Runtime column to integers. This creates some NA cells, so we remove them with na.omit() to ensure that lm() and any subsequent function will run. I suppress the warnings here because I omit the NA cells immediately after. 
+
+```{r}
+suppressWarnings(df$Rating <- as.double(df$Rating))
+suppressWarnings(df$Runtime <-as.integer(df$Runtime))
+
+df <- na.omit(df)
+```
+
+##### **Creating an 80/20 Split**
+We set the seed so that our split does not change between runs of the sample() function. We then separate it into a list called train (the 80 split) and test (the 20 split).
 
 ```{r}
 set.seed(1234)
-split <- sample(1:nrow(df), nrow(df)*.8, replace=FALSE)
-train <- df[ split, ]
-test <- df[ -split, ]
+split <- sample(1:nrow(df), nrow(df)*.8, replace=FALSE) # split the data into 80/20 samples
+train <- df[ split, ] # set train as the  80 split
+test <- df[ -split, ] # set test as the 20 split
 ```
 
+
+
 ```{r}
-lm1 <- lm(Global_Sales~Critic_Score, data=train)
+lm1 <- lm(Rating~Runtime, data=train)
 summary(lm1)
 par(mfrow=c(2,2))
 plot(lm1)
