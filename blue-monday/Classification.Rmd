@@ -97,12 +97,16 @@ nb1
 
 ##### **Classification Models**
 ###### f. Using these two classification models models, predict and evaluate on the test data using all of the classification metrics discussed in class. Compare the results and indicate why you think these results happened.
-
+TODO
 ```{r}
 test$RainToday <- ifelse(test$RainToday=="Yes",1,0)
 test$RainTomorrow <- ifelse(test$RainTomorrow=="Yes",1,0)
 pred1 <- predict(glm1, newdata = test, type = "response")
 acc1 <- mean(pred1)
-print(paste("Logistic Accuracy: ", acc1))
 ```
+##### **Responses**
+###### g. Write a paragraph listing the strengths and weaknesses of Naïve Bayes and Logistic Regression.
+TODO
 
+###### h. Write a paragraph listing the benefits, drawbacks of each of the classification metrics used, and briefly describe what each metric tells you.
+TODO
