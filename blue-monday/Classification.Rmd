@@ -1,0 +1,108 @@
+---
+title: "Classification"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+#### Created by John Lawler - JML190001
+###### CS4375.004 with Karen Mazidi
+###### Created on 2/13/2023, last worked on 2/20/2023
+
+===============================================================================================================
+
+##### **Introduction** 
+Linear models for classification are a method that uses a linear function to separate data into different classes. This is done by assigning weight to predictor variables and determining a model that can predict whether a value falls within a threshold or not. The strengths of these linear models are their simplicity and interpretability as they are easy to understand, and use in real world applications. The limitations of this mainly lie in the fact that complex data sets or data sets that use more than two variables will find the data learned from these methods unhelpful.
+
+##### **Getting the File**
+To run any of the chunks of R script in this file, please insert *[weatherAUS.csv](https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package)* into the same folder as this file. You can also find this csv on my [Github](https://github.com/Billy-Budd/mensch-maschine/blob/main/blue-monday/weatherAUS.csv) repository. Any other information that pertains to other documents can be found in the [read me](https://github.com/Billy-Budd/mensch-maschine#readme). Unfortunately, the prediction function would not work with NA data, so I had to remove it which probably skews the overall results of this. Major sections have headers that are bolded and there are some intermediary sections that just have headers and are not bolded. 
+
+```{r}
+df <- read.csv("weatherAUS.csv", header = TRUE)
+df <- na.omit(df) # remove missing data
+```
+
+##### **Creating an 80/20 Split**
+###### a. Divide into 80/20 train/test
+We set the seed so that our split does not change between runs of the sample() function. We then separate it into a list called train (the 80 split) and test (the 20 split). Output lengths of each split. Also outputs the date of data collection start and end to get a sense of the time period of this data. 
+```{r}
+set.seed(1234)
+split <- sample(1:nrow(df), nrow(df)*.8, replace=FALSE) # split the data into 80/20 samples
+train <- df[ split, ] # set train as the  80 split
+test <- df[ -split, ] # set test as the 20 split
+
+# I used MinTemp here to show observations, but any column header would be acceptable
+tmp <- c("Number of observations in train:", length(train$MinTemp),
+"Number of observations in test:", length(test$MinTemp),
+"Date of data collection start: ", min(df$Date),
+"Date of data collection end: ", max(df$Date))
+cat(tmp, sep = '\n')
+```
+
+##### Summary Data
+###### b. Use at least 5 R functions for data exploration, using the training data 
+This is some data from the training data, and below it are some tables that show the frequency of occurrence for some of the variables we will be looking at in our classification data. 
+```{r}
+head(train)
+tail(train)
+summary(train)
+str(train)
+```
+
+**Wind Gust Direction Frequency:**
+```{r}
+windGustDirFreq <- table(train$WindGustDir)
+```
+**Location Frequency:**
+```{r}
+locationFreq <- table(train$Location)
+```
+
+##### Simple Graphs
+###### c. Create at least 2 informative graphs, using the training data
+These are some simple graphs to just get an idea of what the data looks like. By the looks of these graphs, Pressure at 9AM seems to be a better predictor than maximum temperature at predicting the amount of rainfall in Australia. The graphs were a bit crowded, so I doubled them up to show percentages and what they are. The location frequency pie chart is still difficult to read, so I added a third graph to supplement. The third graph shows the probability of rain tomorrow given there was rain today. This shows that it rains nonsporadically. Given the green on the first day, it is more likely to rain on the second day. 
+```{r}
+par(mfrow=c(1,2)) # output side by side
+piepercent1 <- round(100 * windGustDirFreq / sum(windGustDirFreq), 1) # get percents for graph 1
+pie(windGustDirFreq, labels = piepercent1, main = "Wind Direction Frequency", col = rainbow(length(windGustDirFreq))) # percent graph 1
+pie(windGustDirFreq, main = "Wind Direction Frequency", col = rainbow(length(windGustDirFreq))) # labeled graph 1
+
+par(mfrow=c(1,2)) # output side by side
+piepercent2 <- round(100 * locationFreq / sum(locationFreq), 1) # get percents for graph 2
+pie(locationFreq, labels = piepercent2, main = "Location Frequency", col = rainbow(length(locationFreq))) # percent graph 2
+pie(locationFreq, main = "Location Frequency", col = rainbow(length(locationFreq))) # percent graph 2
+
+tempTable <- prop.table(table(train$RainToday,train$RainTomorrow), margin = 1) # create a table for bar plot
+barplot(tempTable, main = "Probability of Rain Tomorrow Given Rain Today", xlab = "Rain Today", ylab = "Probability of Rain Tomorrow", legend.text = rownames(tempTable), col = rainbow(length(tempTable))) # create bar plot
+```
+
+##### **Creating a Simple Linear Model**
+###### d. Build a logistic regression model and output the summary. Write a thorough explanation of the information in the model summary.
+The deviance residuals show the difference between the observed and predicted models, and judging that the max difference between 0 and 1 is 1, the prediction is not always correct with a max difference of almost 2 and a minimum difference greater than -1. On the other hand, the median, 1Q, and 3Q are the same so the prediction is often off by the exact same amount which is a neat detail. The coefficients here show the change in the log odds of y for every 1 unit in the predictor change. The p-values are very low, which is a good thing. The null and residual deviance here tells us that the difference is statistically significant. 
+```{r}
+train$RainToday <- ifelse(train$RainToday=="Yes",1,0)
+train$RainTomorrow <- ifelse(train$RainTomorrow=="Yes",1,0)
+glm1 <- glm(RainTomorrow ~ RainToday, data = train, family = "binomial", maxit = 400) # create logistic regression model
+summary(glm1)
+```
+##### **Naive Bayes**
+###### e. Build a naïve Bayes model and output what the model learned. Write a thorough explanation of the data.
+I did not include date or wind gust direction as they seem irrelevant to this particular calculation as they are not really dependent on the weather, and the date is unique since it includes the year. This function tells us that the prior probability of predicting rain tomorrow given the the independent variables. Here, we can see that we have a 22.069% of prior probabilities to predict rain tomorrow. 
+```{r}
+library(e1071)
+nb1 <- naiveBayes(RainTomorrow~.-Date -WindGustDir -WindDir9am -WindDir3pm, data = train)
+nb1
+```
+
+##### **Classification Models**
+###### f. Using these two classification models models, predict and evaluate on the test data using all of the classification metrics discussed in class. Compare the results and indicate why you think these results happened.
+
+```{r}
+test$RainToday <- ifelse(test$RainToday=="Yes",1,0)
+test$RainTomorrow <- ifelse(test$RainTomorrow=="Yes",1,0)
+pred1 <- predict(glm1, newdata = test, type = "response")
+acc1 <- mean(pred1)
+print(paste("Logistic Accuracy: ", acc1))
+```
+

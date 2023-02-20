@@ -12,6 +12,9 @@ output:
 
 ===============================================================================================================
 
+##### **Introduction**
+Linear regression is a method used to model the relationship between the response variable (dependent variable) and the predictor variable(independent variable). Linear regression attempts to find a relationship between a these variables in terms of a straight line. Along with this, it produces how accurate it was in trying to create this line in terms of R-squared and other information included when summary(lm(data)) is used. Linear regression's strengths lie in the fact that they are easy to implement and interpret, and can identify the strength of a predictor variable. On that note, multiple independent variables can be used to determine which is the best predictor variable. The weakness of this is not everything is linearly related, and sometimes a curve or other types of relationships (logarithm, normal distributions, etc.) trump the strengths of a linear regression. 
+
 ##### **Getting the File**
 To run any of the chunks of R script in this file, please insert *[weatherAUS.csv](https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package)* into the same folder as this file. You can also find this csv on my [Github](https://github.com/Billy-Budd/mensch-maschine/blob/main/blue-monday/weatherAUS.csv) repository. Any other information that pertains to other documents can be found in the [read me](https://github.com/Billy-Budd/mensch-maschine#readme). Unfortunately, the prediction function would not work with NA data, so I had to remove it which probably skews the overall results of this. Major sections have headers that are bolded and there are some intermediary sections that just have headers and are not bolded. 
 ```{r}
@@ -38,7 +41,7 @@ cat(tmp, sep = '\n')
 
 ##### Summary Data
 ###### b. Use at least 5 R functions for data exploration, using the training data 
-This is some data that shows some of the data from Austrailian weather from all over the country for our training data. 
+This is some data that shows some of the data from Australian weather from all over the country for our training data. 
 ```{r}
 head(train)
 tail(train)
@@ -56,7 +59,7 @@ cat(tmp, sep = '\n')
 
 ##### Simple Graphs
 ###### c. Create at least 2 informative graphs, using the training data
-These are some simple graphs to just get an idea of what the data looks like. By the looks of these graphs, Pressure at 9AM seems to be a better predictor than maximum temperature at predicting the amount of rainfall in Austrailia. 
+These are some simple graphs to just get an idea of what the data looks like. By the looks of these graphs, Pressure at 9AM seems to be a better predictor than maximum temperature at predicting the amount of rainfall in Australia. 
 ```{r}
 par(mfrow=c(1,2)) # output side by side
 plot(train$MaxTemp, train$Rainfall, xlab = "Max Temperature", ylab = "Rainfall", main = "Maximum Temperature vs Rainfall") # plot 1
@@ -65,7 +68,7 @@ plot(train$Pressure9am, train$Rainfall, xlab = "Pressure at 9AM", ylab = "Rainfa
 
 ##### **Creating a Simple Linear Model**
 ###### d. Build a simple linear regression model (one predictor) and output the summary. Write a thorough explanation of the information in the model summary. 
-This creates a simple model of how pressure relates to rainfall in Austrailia. This shows us the values of the residuals (the observed value - the predicted value) in terms of a normal distribution to show how much deviance there is in the line of best fit. We also see information about our line in terms of the estimated slope, the standard error of that slope, the t-statistics, and the p-value. All of this data tells us how well the slope fits to our data. In this case, we have a low standard error and a low p-value, which provides us evidence that these two values are related in some way; however, the R-squared value tells us that the variance between the data is high. This is probably due to the fact that the data here is not linearly related and would be better fit for a non-linear approach. The f-statistic shows that there is some stastistic significance, but we will need to do more to analyze this fact. There is some other information here, such as degrees of freedom. This is dependent on how much data we have in our set, and in this case we have many degrees of freedom because this is a larger dataset. In summary, all of this information is to tell us how significant the resulting data is, how related these two values are, and how much variance/residuals there is in the dataset. 
+This creates a simple model of how pressure relates to rainfall in Australia. This shows us the values of the residuals (the observed value - the predicted value) in terms of a normal distribution to show how much deviance there is in the line of best fit. We also see information about our line in terms of the estimated slope, the standard error of that slope, the t-statistics, and the p-value. All of this data tells us how well the slope fits to our data. In this case, we have a low standard error and a low p-value, which provides us evidence that these two values are related in some way; however, the R-squared value tells us that the variance between the data is high. This is probably due to the fact that the data here is not linearly related and would be better fit for a non-linear approach. The f-statistic shows that there is some statistic significance, but we will need to do more to analyze this fact. There is some other information here, such as degrees of freedom. This is dependent on how much data we have in our set, and in this case we have many degrees of freedom because this is a larger data set. In summary, all of this information is to tell us how significant the resulting data is, how related these two values are, and how much variance/residuals there is in the data set. 
 ```{r}
 lm1 <- lm(Pressure9am~Rainfall, data=train) # create linear model
 summary(lm1) # summary
