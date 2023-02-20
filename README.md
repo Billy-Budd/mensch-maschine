@@ -8,7 +8,12 @@ Included in this repo is [Overview-of-ML](Overview-of-ML.pdf) which contains the
 Name is in reference to the [Gesamtkunstwerk](https://www.theartstory.org/definition/gesamtkunstwerk/) of [Kraftwerk](https://en.wikipedia.org/wiki/Kraftwerk), an early-electronica German band, and their electronic music discography. [The Man-Machine or Die Mensch-Maschine](https://youtu.be/EPxGE1xWl_E?list=PLRp2a3r7tvpd3NpB_CwUbOoLxRgY4CwHh) is a [1978 electronic album](https://en.wikipedia.org/wiki/The_Man-Machine) that felt like an appropriate name and naming scheme for my projects in this machine learning course. 
 
 ## [blue-monday](/blue-monday)
-TODO [data link](https://www.kaggle.com/datasets/thedevastator/global-video-game-sales-ratings)
+The [data set](https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package) is a set of weather data for the country of Australia. It is also [here](/blue-monday/weatherAUS.csv). Both R programs use the data set to try and predict some aspect of Australia's weather. Regression attempts to predict pressure by using rainfall amounts, and classification attempts to predict whether it will rain tomorrow if it rained today. Both go into more detail which can be found in their .pdfs or in their source code. 
+
+- the PDF of regression.rmd can be found [here](/blue-monday/Regression.pdf)
+- the PDF of classification.rmd can be found [here](blue-monday/Classification.pdf)
+- source for regression can be found [here](/blue-monday/Regression.rmd)
+- source for classification can be found [here](/blue-monday/Classification.Rmd)
 
 Name is in reference to the song [Blue Monday](https://youtu.be/c1GxjzHm5us) by [New Order](https://en.wikipedia.org/wiki/New_Order_(band)) which [samples](https://en.wikipedia.org/wiki/Blue_Monday_(New_Order_song)) the song [Uranium](https://youtu.be/t-QIWXiGuGw). While this is a bit of a stretch in the naming scheme, taking samples is important in data collection and statistics. I also really wanted to name something after Blue Monday. 
 
