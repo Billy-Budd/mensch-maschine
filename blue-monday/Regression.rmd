@@ -8,51 +8,150 @@ output:
 ---
 #### Created by John Lawler - JML190001
 ###### CS4375.004 with Karen Mazidi
-###### Created on 2/13/2023, last worked on 2/13/2023
+###### Created on 2/13/2023, last worked on 2/20/2023
 
 ===============================================================================================================
 
 ##### **Getting the File**
-To run any of the chunks of R script in this file, please insert *[imdb-data.csv](https://www.kaggle.com/datasets/mahmoudahmed6/imdb-2022-movies)* into the same folder as this file. I renamed the file, but the correct named one is in my [Github](https://github.com/Billy-Budd/mensch-maschine/blob/main/blue-monday/imdb-data.csv) repository. Additionally, I removed the word "min" from the column Runtime as it was redundant and helpful to remove it before running any of the code here. You can click [here](https://github.com/Billy-Budd/mensch-maschine/blob/main/blue-monday/imdb-data.csv) for the altered file. Any other information that pertains to other documents can be found in the [read me](https://github.com/Billy-Budd/mensch-maschine#readme).
-
+To run any of the chunks of R script in this file, please insert *[weatherAUS.csv](https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package)* into the same folder as this file. You can also find this csv on my [Github](https://github.com/Billy-Budd/mensch-maschine/blob/main/blue-monday/weatherAUS.csv) repository. Any other information that pertains to other documents can be found in the [read me](https://github.com/Billy-Budd/mensch-maschine#readme). Unfortunately, the prediction function would not work with NA data, so I had to remove it which probably skews the overall results of this. Major sections have headers that are bolded and there are some intermediary sections that just have headers and are not bolded. 
 ```{r}
-df <- read.csv("imdb-data.csv")
-```
-
-##### **Parsing the Columns**
-The columns in this .csv are of type char by default, so to fix this, we set the Rating column to doubles and the Runtime column to integers. This creates some NA cells, so we remove them with na.omit() to ensure that lm() and any subsequent function will run. I suppress the warnings here because I omit the NA cells immediately after. Print amount of remaining rows.
-
-```{r}
-suppressWarnings(df$Rating <- as.double(df$Rating)) # parse as doubles
-suppressWarnings(df$Runtime <-as.integer(df$Runtime)) # parse as integers
-
+df <- read.csv("weatherAUS.csv", header = TRUE)
 df <- na.omit(df) # remove missing data
-
-# output number of rows
-print(paste("Number of doubles in Rating:", length(df$Rating)))
-print(paste("Number of integers in Runtime:", length(df$Runtime))) 
 ```
 
 ##### **Creating an 80/20 Split**
-We set the seed so that our split does not change between runs of the sample() function. We then separate it into a list called train (the 80 split) and test (the 20 split). Output lengths of each split. 
-
+###### a. Divide into 80/20 train/test
+We set the seed so that our split does not change between runs of the sample() function. We then separate it into a list called train (the 80 split) and test (the 20 split). Output lengths of each split. Also outputs the date of data collection start and end to get a sense of the time period of this data. 
 ```{r}
 set.seed(1234)
 split <- sample(1:nrow(df), nrow(df)*.8, replace=FALSE) # split the data into 80/20 samples
 train <- df[ split, ] # set train as the  80 split
 test <- df[ -split, ] # set test as the 20 split
 
-# I used ratings here to show observations, but any column header would be acceptable
-print(paste("Number of observations in train:", length(train$Rating)))  
-print(paste("Number of observations in test:", length(test$Rating)))
+# I used MinTemp here to show observations, but any column header would be acceptable
+tmp <- c("Number of observations in train:", length(train$MinTemp),
+"Number of observations in test:", length(test$MinTemp),
+"Date of data collection start: ", min(df$Date),
+"Date of data collection end: ", max(df$Date))
+cat(tmp, sep = '\n')
 ```
 
-
-
+##### Summary Data
+###### b. Use at least 5 R functions for data exploration, using the training data 
+This is some data that shows some of the data from Austrailian weather from all over the country for our training data. 
 ```{r}
-lm1 <- lm(Rating~Runtime, data=train)
-summary(lm1)
-par(mfrow=c(2,2))
-plot(lm1)
+head(train)
+tail(train)
+summary(train)
 
+tmp <- c("", "Correlation between Maximum Temperature and Rainfall:", cor(train$MaxTemp, train$Rainfall), "",
+        "Correlation between Humidity at 9AM and Rainfall:", cor(train$Humidity9am, train$Rainfall), "",
+        "Covariance of Maximum Temperature and Rainfall:", cov(train$MaxTemp, train$Rainfall), "",
+        "Covariance of Humidity at 9AM and Rainfall:", cov(train$Humidity9am, train$Rainfall), "",
+        "Variance of Rainfall:", var(train$Rainfall), "",
+        "Average Rainfall:", mean(train$Rainfall), "",
+        "Range of Rainfall:", range(train$Rainfall))
+cat(tmp, sep = '\n')
+```
+
+##### Simple Graphs
+###### c. Create at least 2 informative graphs, using the training data
+These are some simple graphs to just get an idea of what the data looks like. By the looks of these graphs, Pressure at 9AM seems to be a better predictor than maximum temperature at predicting the amount of rainfall in Austrailia. 
+```{r}
+par(mfrow=c(1,2)) # output side by side
+plot(train$MaxTemp, train$Rainfall, xlab = "Max Temperature", ylab = "Rainfall", main = "Maximum Temperature vs Rainfall") # plot 1
+plot(train$Pressure9am, train$Rainfall, xlab = "Pressure at 9AM", ylab = "Rainfall", main = "Pressure at 9AM vs Rainfall") # plot 2
+```
+
+##### **Creating a Simple Linear Model**
+###### d. Build a simple linear regression model (one predictor) and output the summary. Write a thorough explanation of the information in the model summary. 
+This creates a simple model of how pressure relates to rainfall in Austrailia. This shows us the values of the residuals (the observed value - the predicted value) in terms of a normal distribution to show how much deviance there is in the line of best fit. We also see information about our line in terms of the estimated slope, the standard error of that slope, the t-statistics, and the p-value. All of this data tells us how well the slope fits to our data. In this case, we have a low standard error and a low p-value, which provides us evidence that these two values are related in some way; however, the R-squared value tells us that the variance between the data is high. This is probably due to the fact that the data here is not linearly related and would be better fit for a non-linear approach. The f-statistic shows that there is some stastistic significance, but we will need to do more to analyze this fact. There is some other information here, such as degrees of freedom. This is dependent on how much data we have in our set, and in this case we have many degrees of freedom because this is a larger dataset. In summary, all of this information is to tell us how significant the resulting data is, how related these two values are, and how much variance/residuals there is in the dataset. 
+```{r}
+lm1 <- lm(Pressure9am~Rainfall, data=train) # create linear model
+summary(lm1) # summary
+```
+
+##### Residual Plots for Simple Linear Model
+###### e. Plot the residuals and write a thorough explanation of what the residual plot tells you.
+This shows us our residuals for the linear model. 
+
+The first plot, residuals vs fitted, the pattern shows us that a linear fit is probably not the best solution to capture the relevant data.
+
+The second plot, normal q-q, shows us that the data falls very close to a normal distribution as most of the dots fall along a positive straight line. 
+
+The third plot, scale-location, attempts to show heteroscedasticity, which would mean that there would be an even distribution along the graph. This graph is heavily weighted to one side, indicating no heteroscedasticity.
+
+The fourth plot, residuals vs leverage, shows us that for the most part, there are not many outliers. The density is mostly clustered together, showing that there are only a handful of 'influential points.'
+
+Judging from these plots, a **normal distribution** is the best way to go in terms of determining what would be best for data. 
+```{r}
+par(mfrow=c(2,2)) # plot in a 2x2 grid
+plot(lm1) # create plots
+```
+
+##### **Creating a More Complex Linear Models**
+###### f. Build a multiple linear regression model (multiple predictors), output the summary and residual plots.
+Here, our R-squared increases showing that we can better predict pressure using the rainfall and windspeed. 
+While the R-squared is still low, using the new information of windspeed allows us to better calculate pressure. 
+```{r}
+lm2 <- lm(Pressure9am~Rainfall + WindSpeed9am, data=train) # create linear model
+summary(lm2) # summary
+```
+
+##### Residual Plots for Complex Linear Model
+This shows us our residuals for the linear model. 
+The data here is mostly the same as in our first model, but we can see that the normal q-q graph follows the line a bit more closely than it did the first time, again showing that a normal distribution is the best way to go. 
+```{r}
+par(mfrow=c(2,2)) # plot in a 2x2 grid
+plot(lm2) # create plots
+```
+
+##### An Even More Complex Model
+###### g. Build a third linear regression model using a different combination of predictors, interaction effects, polynomial regression, or any combination to try to improve the results. Output the summary and residual plots.
+Here, our R-squared increases showing that we can better predict pressure using the rainfall and windspeed. 
+Using even more values, we can better see a much better R-squared using these predictors. 
+```{r}
+lm3 <- lm(Pressure9am~Rainfall + WindSpeed9am + Pressure3pm + Humidity9am + Humidity3pm, data=train) # create linear model
+summary(lm3) # summary
+```
+
+##### Residual Plots for the Even More Complex Linear Model
+Here is the first time we see something quite different than our simple model. Here, we see that the normal q-q graph deviates from it's line more so than we previously graphed.
+Residuals vs Fitted begins to show less of a density on one side, and being more random around the middle (zero) line. This indicates that this model works pretty good in comparison to the others, and that a more linear model would work for showing this data. 
+```{r}
+par(mfrow=c(2,2)) # plot in a 2x2 grid
+plot(lm3) # create plots
+```
+
+##### **Comparing the Linear Models**
+###### h. Write a paragraph or more comparing the results. Indicate which model is better and why you think that is the case.
+As far as linear models go, Model 3 is the best one. This is because it has the most "random" Residuals vs Fitted graph. The other two have graphs that lump on the right side indicating that there is less linearity. Additionally, it has the best R-squared meaning that it fits a line much better than the other two models. The F-statistic is high and the P-value is low, also indicating that there is a higher significance and relationship in this model rather than the previous two. Alternatively, I would like to see how a normal distribution would fair for models 1 and 2, as they have a strong line on their Normal Q-Q graphs. The third model has the best linear relationship because of its additional predictors. As I will state later, weather needs many predictors to accurately predict how it will act, and model three gives it the most. 
+
+##### **Correlation, MSE, and RMSE**
+###### i. Using your 3 models, predict and evaluate on the test data using metrics correlation and mse. Compare the results and indicate why you think these results happened
+Here, we can directly compare the correlations and the errors of the three models. Model 3 has the a great increase in correlation with a small amount of additional MSE (and RMSE). Again, this is showing that model 3 has the best performance of these three models, but all of these models have high error. This is due to the unpredictable nature of the weather, but I think using more predictors had a positive result overall because there are a multitude of factors that impact the weather. Using more predictors is probably the only way to predict the weather, and using a more encompassing dataset with less NA values and more data points would allow a data scientist (or meteorologist) to better predict weather patterns.
+```{r}
+pred1 <- predict(lm1, newdata = test) # prediction 1
+cor1 <- cor(pred1, test$Humidity9am) # correlation 1
+mse1 <- mean((pred1-test$Humidity9am)^2) # mse1
+rmse1 <- sqrt(mse1) # rmse1
+
+pred2 <- predict(lm2, newdata = test) # prediction 2
+cor2 <- cor(pred2, test$Humidity9am) # correlation 2
+mse2 <- mean((pred2-test$Humidity9am)^2) # mse2
+rmse2 <- sqrt(mse2) # rmse2
+
+pred3 <- predict(lm3, newdata = test) # prediction 3
+cor3 <- cor(pred3, test$Humidity9am) # correlation 3
+mse3 <- mean((pred3-test$Humidity9am)^2) # mse3
+rmse3 <- sqrt(mse3) # rmse3
+
+# output data collected in a nice format
+tmp <- c("Simple Linear Model", "Correlation:", cor1, "", "MSE:", mse1, "", "RMSE:", rmse1,
+         "","",
+         "Complex Linear Model", "Correlation:", cor2, "", "MSE:", mse2, "", "RMSE:", rmse2,
+         "","",
+         "Even More Complex Linear Model", "Correlation:", "", cor3, "MSE:", mse3, "", "RMSE:", rmse3)
+
+cat(tmp, sep = '\n')
 ```
