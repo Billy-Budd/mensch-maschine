@@ -15,5 +15,5 @@
   - [classification](/blue-monday/Classification.pdf)
 - [portfolio-three-algorithms-from-scratch](/metropolis/portfolio-three-algorithms-from-scratch)
   - [algorithms-from-scratch](/metropolis/portfolio-three-algorithms-from-scratch/portfolio-algorithms-from-scratch.pdf)
-  - [titanic-data](/the-robots/titanic-project.csv)
+  - [titanic-data](/das-model/titanic_project.csv)
 - [markdown-cheat-sheet](/metropolis/markdown-cheat-sheet.pdf)
