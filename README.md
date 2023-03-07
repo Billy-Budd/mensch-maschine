@@ -17,6 +17,18 @@ The [data set](https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-pac
 
 Name is in reference to the song [Blue Monday](https://youtu.be/c1GxjzHm5us) by [New Order](https://en.wikipedia.org/wiki/New_Order_(band)) which [samples](https://en.wikipedia.org/wiki/Blue_Monday_(New_Order_song)) the song [Uranium](https://youtu.be/t-QIWXiGuGw). While this is a bit of a stretch in the naming scheme, taking samples is important in data collection and statistics. I also really wanted to name something after Blue Monday. 
 
+## [das-model](/das-model)
+There are two programs [1](/das-model/das-model-linreg.cpp) [2](/das-model/the-model-naivebayes.cpp) that perform analysis on the [titanic data set](/das-model/titanic-project.csv). Some pictures of the output are in the document [here](/das-model/CS4375-algorithms-from-scratch-response.pdf).
+
+- the PDF response is [here](/das-model/CS4375-algorithms-from-scratch-response.pdf)
+- the dataset is [here](/das-model/titanic-project.csv)
+- the source for linreg is [here](/das-model/das-model-linreg.cpp)
+- the source for naivebayes is [here](/das-model/the-model-naivebayes.cpp)
+- the executable for linreg is [here](/das-model/das-model-linreg.exe)
+- the executable for naivebayes is [here](/das-model/the-model-naivebayes.exe)
+
+Name is in reference to the song [Das Model](https://en.wikipedia.org/wiki/Das_Model) by Kraftwerk. The song has an [English](https://youtu.be/KFq2pU21cNU) and a [German](https://youtu.be/qCFIRjycV5Q) version, and I chose to name each of the sources after one of each of the translations. 
+
 ## [metropolis](/metropolis)
 Please click [here](metropolis.md) for the table of contents contained within it. Contains mainly loose files that pertain to various projects such as their assignment pages or pictures of their execution. 
 
