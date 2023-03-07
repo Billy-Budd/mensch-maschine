@@ -146,6 +146,7 @@ int main(int argc, char** argv) {
 
 	vector<double> survivalAge, diedAge;
 
+	auto start = chrono::high_resolution_clock::now();    // start clock
 	// train model
 	for (int i = 0; i < trainSize; i++) {
 
@@ -208,6 +209,10 @@ int main(int argc, char** argv) {
 				diedAge.push_back(ageTrain.at(i));
 		}
 	} // for loop
+	auto end1 = chrono::high_resolution_clock::now();                        // stop clock
+	auto time1 = chrono::duration_cast<chrono::milliseconds>(end1 - start);    
+
+	cout << "\n\nTraining Time: " << time1.count() << "ms\n";
 
 	cout << "\n\nInitial sex survival likelihoods: \n";
 	cout << "Sex 0: " << survivalCalc(numberOfSex0, sex0Lived, trainSize, totalLived) << endl
@@ -264,6 +269,7 @@ int main(int argc, char** argv) {
 
 	double died, survived;
 
+	auto start2 = chrono::high_resolution_clock::now();        
 	// make predictions
 	for (int i = 0; i < (numObservations - trainSize); i++) {
 		died = prob1[1] * sexDieProb[sexTest.at(i)] * pclassDieProb[pclassTest.at(i) - 1]
@@ -274,6 +280,13 @@ int main(int argc, char** argv) {
 
 	}
 	
+	auto end2 = chrono::high_resolution_clock::now();        // stop clock
+	auto time2 = chrono::duration_cast<chrono::milliseconds>(end2 - start2);
+
+	auto time3 = time2 + time1;
+
+	cout << "\n\nPrediction Time: " << time3.count() << "ms\n";
+
 	// create confusion matrix
 	double confusionMatrix[2][2] = { 0.0, 0.0, 0.0, 0.0 };
 
@@ -289,6 +302,8 @@ int main(int argc, char** argv) {
 	cout << "\n\nFirst 10 Predictions: \n";
 	for (int i = 0; i < 10; i++)
 		cout << predictions.at(i) << endl;
+
+	cout << "\n\nPredictions Average: \n" << meanVector(predictions);
 
 	// display confusion matrix
 	cout << "\n\nConfusion Matrix:\n" << confusionMatrix[0][0] << " " << confusionMatrix[0][1] <<
