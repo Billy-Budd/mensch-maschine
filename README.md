@@ -18,10 +18,10 @@ The [data set](https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-pac
 Name is in reference to the song [Blue Monday](https://youtu.be/c1GxjzHm5us) by [New Order](https://en.wikipedia.org/wiki/New_Order_(band)) which [samples](https://en.wikipedia.org/wiki/Blue_Monday_(New_Order_song)) the song [Uranium](https://youtu.be/t-QIWXiGuGw). While this is a bit of a stretch in the naming scheme, taking samples is important in data collection and statistics. I also really wanted to name something after Blue Monday. 
 
 ## [das-model](/das-model)
-There are two programs [1](/das-model/das-model-linreg.cpp) [2](/das-model/the-model-naivebayes.cpp) that perform analysis on the [titanic data set](/das-model/titanic-project.csv). Some pictures of the output are in the document [here](/das-model/CS4375-algorithms-from-scratch-response.pdf).
+There are two programs [1](/das-model/das-model-linreg.cpp) [2](/das-model/the-model-naivebayes.cpp) that perform analysis on the [titanic data set](/das-model/titanic_project.csv). Some pictures of the output are in the document [here](/das-model/CS4375-algorithms-from-scratch-response.pdf). 
 
 - the PDF response is [here](/das-model/CS4375-algorithms-from-scratch-response.pdf)
-- the dataset is [here](/das-model/titanic-project.csv)
+- the dataset is [here](/das-model/titanic_project.csv)
 - the source for linreg is [here](/das-model/das-model-linreg.cpp)
 - the source for naivebayes is [here](/das-model/the-model-naivebayes.cpp)
 - the executable for linreg is [here](/das-model/das-model-linreg.exe)
