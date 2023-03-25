@@ -55,3 +55,10 @@ Name is a reference to [Pocket Calculator](https://youtu.be/eSBybJGZoCU) which j
 Data comes from kaggle, at this [link](https://www.kaggle.com/datasets/ayushnitb/song-features-dataset-regressing-popularity?resource=download).
 
 Name is a reference to a [Radioactivity](https://youtu.be/fM2Ddrg1eFI), in which they relay some atomic-era fears and use tones to create morse code in eigth notes. It is also a pun, in which it emphasizes the radio activity like popular songs. 
+
+## [the-robots](/the-robots)
+TODO: add wikipedia links, overview of program
+- [data](/the-robots/perth.csv) : data used for analysis, home sale price data in Perth, Australia
+- [r-source](/the-robots/SAE-Part3.Rmd) : the R Markdown file with all source chunks, includes notes about needed libraries (may have to manually install some libraries to run)
+- [PDF](/the-robots/SAE-Part3-JML190001-Team7.pdf) : the knit file from the R source. Shows kMeans, Hierarchical, and Model clustering
+TODO: add metropolis files
