@@ -11,7 +11,6 @@ Please click [here](metropolis.md) for the table of contents contained within it
 Name is a reference to [Metropolis](https://youtu.be/SXTBGB2cKAk) in which is a reference to a the [Fritz Lang film](https://en.wikipedia.org/wiki/Metropolis_(1927_film)).
 
 ## [the-robots](/the-robots)
-TODO: add wikipedia links, overview of program
 Program analyzes the data with kMeans, Hierarchical, and Model clustering and goes into detail about what those graphs mean. As I say in the file, the Rmd file needs additional libraries and I had to manually install some of those. Additionally, the program takes a long time for it to complete (about 10-20 minutes on my desktop with a recent cpu(AMD 5800X)). Of course, results will vary, but I recommend just looking at the pdf output. My file that comes from the notebook is part 3 which is why I have kept it out of order from the rest of the pdfs. 
 
 - [data](/the-robots/perth.csv)
