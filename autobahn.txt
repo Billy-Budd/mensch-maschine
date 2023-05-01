@@ -1,0 +1,15 @@
+Here are some of the soft skills that I have gained and learned in this class:
+- Teamwork and Communication
+- Ability to work on projects collaboratively and individually
+- Time Management
+- Project Management
+- Critical and Analytical Thinking
+- Problem Solving
+- Flexibility
+
+Some of the technical skills I gained by creating this repository:
+- Learning how to use Git/GitHub for my projects
+- How to use R for data exploration
+- Creating Rmd files to show data that I explored and analyzed
+- Create markdown files 
+- Use C++ in a Machine Learning capacity
